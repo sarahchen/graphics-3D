@@ -77,7 +77,7 @@ void parse_file ( char * filename,
 
   g.red = 255;
   g.green = 0;
-  g.blue = 255;
+  g.blue = 0;
 
   clear_screen(s);
 
@@ -210,8 +210,10 @@ void parse_file ( char * filename,
     else if ( strncmp(line, "torus", strlen(line)) == 0 ) {
       fgets(line, 255, f);
       sscanf(line, "%lf %lf %lf %lf",
-	     &x, &y, &x1, &y1); // x1, R; y1, r
+	     &x, &y, &x1, &y1); // x1, r; y1, R
       add_torus(pm, x, y, x1, y1, 0.01);
+    }
+    else if ( strstr(line, "#") != NULL) {
     }
     else if ( strncmp(line, "quit", strlen(line)) == 0 ) {
       return;
